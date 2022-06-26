@@ -81,4 +81,4 @@ def setup_db():
 def setup_tests():
     
     with open(settings.PROJECT_PATH+'/pytest.ini', 'w') as f:
-        f.write(f'[pytest]\nDJANGO_SETTINGS_MODULE = {{project_name}}.config.settings\n\npython_files = test_*.py\n\naddopts = --cov=management --cov=apps --cov-config=.coveragerc')
+        f.write(f'[pytest]\nDJANGO_SETTINGS_MODULE = {{project_name}}.config.settings\n\npython_files = test_*.py\n\naddopts = --cov=apps --cov-config=.coveragerc')

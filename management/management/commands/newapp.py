@@ -39,6 +39,7 @@ class Command(BaseCommand):
         # CREATES TEST AND URLS DIRECTORIES AND FILES
         print(f"{bcolors.OKBLUE}->{bcolors.ENDC} Creating test and urls directories/files..")
 
+        os.system(f"rm apps/{appname}/tests.py")
         os.system(f'mkdir apps/{appname}/tests/')
 
         with open(f'apps/{appname}/tests/test_models.py', 'w') as f:
@@ -52,7 +53,17 @@ class Command(BaseCommand):
         
         with open(f'apps/{appname}/urls.py', 'w') as f:
             f.write('from django.urls import path\n\nurlpatterns = [\n\n]')
+
         sleep(0.5)
+
+        # CREATES TEMPLATES DIRECTORIES
+        print(f"{bcolors.OKBLUE}->{bcolors.ENDC} Creating templates directories..")
+        os.system(f'mkdir apps/{appname}/templates')
+        os.system(f'mkdir apps/{appname}/templates/{appname}')
+        os.system(f'mkdir apps/{appname}/templates/{appname}/partials')
+        
+        sleep(0.5)
+
         # ADDS APP TO SETTINGS
 
         print(f"{bcolors.OKBLUE}->{bcolors.ENDC} Adding {appname} to settings..")
@@ -68,6 +79,7 @@ class Command(BaseCommand):
         with open(settings.BASE_DIR / 'settings/base.py' , 'w') as f:
             f.write(final_app_added_str)
         sleep(0.5)
+
         # INCLUDES APPs URLS to main URLS
 
         print(f"{bcolors.OKBLUE}->{bcolors.ENDC} Including {appname} urls to main urls..")

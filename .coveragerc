@@ -5,3 +5,9 @@ omit =
         *test*
         *migrations*
         *admin.py*
+
+[report]
+exclude_lines =
+        pragma: no cover
+        from
+        import

@@ -20,3 +20,10 @@ ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    PROJECT_PATH + '/static',
+]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = PROJECT_PATH + '/media'
