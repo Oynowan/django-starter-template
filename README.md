@@ -27,6 +27,7 @@ Main command is `python manage.py {argument}`.
 - `whatenv` - tells on which environment you are now
 - `newapp` - with `appname` as argument
     - Creates new django app in apps directory
+    - Creates `templates/{appname}/partials` for frontend if needed
     - Creates `apps/{appname}/tests` directory with files
         - test_models.py
         - test_views.py
@@ -38,3 +39,6 @@ Main command is `python manage.py {argument}`.
 For testing we are using pytest. 
 - `.coveragerc` - what files to omit for coverage.
 - `pytest.ini` - choose python files to test(default `test_*.py`), in `addopts` you can add any directories to check for coverage
+
+## TEMPLATES
+All main sites are going to `templates/{appname}` and small modules, for example list of users, to `templates/{appname}/partials`

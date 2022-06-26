@@ -1,4 +1,5 @@
 import os
+import re
 from time import sleep
 from django.conf import settings
 from django.core.management.base import CommandError
@@ -15,7 +16,7 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-env_path = settings.BASE_DIR / 'settings/.env'
+env_path = settings.PROJECT_PATH + '/.env'
 
 def setup_dependencies(env='dev', first=False):
     print(f"{bcolors.OKBLUE}->{bcolors.ENDC} Installing dependencies")
@@ -52,19 +53,20 @@ def setup_env(env="dev", exists=True, command=True, warnings=0):
                 print(f"{bcolors.OKBLUE}->{bcolors.ENDC}You are already setup on {env} env")
                 return
             print(f"{bcolors.OKBLUE}->{bcolors.ENDC}Changing .env file for {env}")
+            reg_env = re.compile('ENV_VAR=.+')
+            env_string = f"ENV_VAR={env}',\n"
             with open(env_path, "r") as f:
-                data = f.read().split('\n')
-                if data[0][:7] == 'ENV_VAR':
-                    if data[0][8:] != env:
-                        add = f"ENV_VAR={env}\n" + "\n".join(line for line in data[1:])
-                    else:
-                        add = "\n".join(line for line in data)
-                else:
-                        add = f"ENV_VAR={env}\n" + "\n".join(line for line in data)
+                data = f.read()
+            check_reg = reg_env.findall(data)
 
-                with open(env_path, 'w') as f2:
-                    f2.write(add)
-                    print(f"\t{bcolors.OKGREEN}->{bcolors.ENDC}Success")
+            if check_reg:
+                final_app_added_str = re.sub(reg_env, env_string, data)
+            else:
+                final_app_added_str = data + env_string
+
+            with open(env_path, 'w') as f:
+                f.write(final_app_added_str)
+            print(f"\t{bcolors.OKGREEN}->{bcolors.ENDC}Success")
 
             sleep(0.5)
             setup_dependencies(env)
