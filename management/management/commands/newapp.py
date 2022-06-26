@@ -51,7 +51,7 @@ class Command(BaseCommand):
             f.write('import pytest')
         
         with open(f'apps/{appname}/urls.py', 'w') as f:
-            f.write('import path\n\nurlpatterns = [\n\n]')
+            f.write('from django.urls import path\n\nurlpatterns = [\n\n]')
         sleep(0.5)
         # ADDS APP TO SETTINGS
 
