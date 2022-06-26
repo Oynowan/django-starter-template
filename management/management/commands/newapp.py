@@ -59,15 +59,15 @@ class Command(BaseCommand):
         
         reg_urls = re.compile('\nurlpatterns = \[[^\]]*')
 
-        with open(settings.PROJECT_PATH + '/project_name/urls.py' , 'r') as f:
+        with open(settings.PROJECT_PATH + '/{{project_name}}/urls.py' , 'r') as f:
             data = f.read()
 
         match_str = reg_urls.findall(data)[0]
         final_str = match_str + f"    # {appname}\n" + f"    path('{appname}/', include('apps.{appname}.urls')),\n"
         final_app_added_str = re.sub(reg_urls, final_str, data)
-        with open(settings.PROJECT_PATH + '/project_name/urls.py' , 'w') as f:
+        with open(settings.PROJECT_PATH + '/{{project_name}}/urls.py' , 'w') as f:
             f.write(final_app_added_str)
         
-        print(f"{bcolors.OKBLUE}->{bcolors.ENDC} You can change name of the url path in {settings.PROJECT_PATH + '/project_name/urls.py'} file.")
+        print(f"{bcolors.OKBLUE}->{bcolors.ENDC} You can change name of the url path in {settings.PROJECT_PATH + '/{{project_name}}/urls.py'} file.")
         sleep(1)
         print(f"{bcolors.OKGREEN} APP {appname} was addes successfuly!")

@@ -1,5 +1,5 @@
 from django.core.management.base import CommandError, BaseCommand
-from management.utilities import bcolors, setup_dependencies, setup_db, setup_env
+from management.utilities import bcolors, setup_dependencies, setup_db, setup_env, setup_tests
 from django.conf import settings
 from time import sleep
 import os
@@ -33,6 +33,11 @@ class Command(BaseCommand):
 
         print(f"{bcolors.OKBLUE}->{bcolors.ENDC} Setting up db")
         setup_db()
+        sleep(0.5)
+
+        # Creates pytest.ini
+        print(f"{bcolors.OKBLUE}->{bcolors.ENDC} Create pytest.ini")
+        setup_tests()
         sleep(0.5)
         end_time = datetime.datetime.now()
         time = end_time-start_time

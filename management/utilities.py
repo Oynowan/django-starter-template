@@ -77,3 +77,8 @@ def setup_db():
 
     os.system('python3 manage.py makemigrations')
     os.system('python3 manage.py migrate')
+
+def setup_tests():
+    
+    with open(settings.PROJECT_PATH+'/pytest.ini', 'w') as f:
+        f.write(f'[pytest]\nDJANGO_SETTINGS_MODULE = {{project_name}}.config.settings\n\npython_files = test_*.py\n\naddopts = --cov=management --cov=apps --cov-config=.coveragerc')
