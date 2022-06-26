@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     warn_text = 'warning'
     help = "changeenv - changes env, by default to dev, prod or dev"
-    env_path = settings.BASE_DIR / 'settings/.env'
+    env_path = settings.PROJECT_PATH + '/.env'
     
     def add_arguments(self, parser) -> None:
         # optional

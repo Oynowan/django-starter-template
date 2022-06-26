@@ -20,7 +20,7 @@ Main command is `python manage.py {argument}`.
     - It creates .env file and generates `SECRET_KEY`
     - Makes first local database migrations
 
-- `changenv` - with option `-e prod/dev`
+- `changenv` - with option `prod or dev`
     - It changes environment to dev or prod
     - Installs and uninstalls dependencies 
 
