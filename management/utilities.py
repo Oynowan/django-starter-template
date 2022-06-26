@@ -54,7 +54,7 @@ def setup_env(env="dev", exists=True, command=True, warnings=0):
                 return
             print(f"{bcolors.OKBLUE}->{bcolors.ENDC}Changing .env file for {env}")
             reg_env = re.compile('ENV_VAR=.+')
-            env_string = f"ENV_VAR={env}',\n"
+            env_string = f"ENV_VAR={env}"
             with open(env_path, "r") as f:
                 data = f.read()
             check_reg = reg_env.findall(data)
