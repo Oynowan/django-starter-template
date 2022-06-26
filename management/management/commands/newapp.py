@@ -21,6 +21,21 @@ class Command(BaseCommand):
         os.system(f'mkdir apps/{appname}')
         os.system(f'python manage.py startapp {appname} apps/{appname}')
         sleep(0.5)
+        # Change apps/appname/apps.py name, from appname to apps.appname
+        reg_apps = re.compile(appname)
+
+        with open(f'apps/{appname}/apps.py', 'r') as f:
+            data = f.read()
+
+        match_str = reg_apps.findall(data)[0]
+        final_str = f"apps.{appname}"
+        final_app_added_str = re.sub(reg_apps, final_str, data)
+
+        with open(f'apps/{appname}/apps.py' , 'w') as f:
+            f.write(final_app_added_str)
+
+        sleep(0.5)
+        
         # CREATES TEST AND URLS DIRECTORIES AND FILES
         print(f"{bcolors.OKBLUE}->{bcolors.ENDC} Creating test and urls directories/files..")
 
@@ -36,7 +51,7 @@ class Command(BaseCommand):
             f.write('import pytest')
         
         with open(f'apps/{appname}/urls.py', 'w') as f:
-            f.write('urlpatterns = [\n\n]')
+            f.write('import path\n\nurlpatterns = [\n\n]')
         sleep(0.5)
         # ADDS APP TO SETTINGS
 

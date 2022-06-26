@@ -1,4 +1,4 @@
-from django.core.management.base import CommandError, BaseCommand
+from django.core.management.base import BaseCommand
 from management.utilities import bcolors, setup_dependencies, setup_db, setup_env, setup_tests
 from django.conf import settings
 from time import sleep

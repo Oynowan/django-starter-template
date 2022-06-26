@@ -3,10 +3,10 @@
 ## FIRST SETUP
 - Create python environment. `python3 -m venv venv`
 - Active venv. UNIX `source venv/bin/activate` | WIN `.\venv\Scripts\activate`
-- Install django `pip install django==4.0.5`
+- Install django and django-environ `pip install django==4.0.5 django-environ==0.9.0`. 
 - Create new django project from template `django-admin startproject --template https://github.com/Oynowan/django-starter-template/archive/master.zip {new_django_project_name} .`
 - Run `python manage.py firstsetup` command
-- `pytest` to check for any errors
+- `pytest` first test for any errors
 - `python manage.py runserver` to check if everything is setup correctly (default address is `127.0.0.1:8000`)
 - Congratulations your base project is ready
 
