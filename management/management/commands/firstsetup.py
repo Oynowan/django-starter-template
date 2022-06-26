@@ -42,7 +42,7 @@ class Command(BaseCommand):
         end_time = datetime.datetime.now()
         time = end_time-start_time
 
-        if warnings > 1:
+        if self.warnings > 1:
             self.warn_text = 'warnings'
 
         print(f"{bcolors.OKBLUE}First setup finished in time {time.seconds}s with {warnings} {self.warn_text}. ")
