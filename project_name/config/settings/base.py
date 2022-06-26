@@ -1,13 +1,18 @@
 from pathlib import Path
 import environ
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 
 env = environ.Env()
 env.read_env()
 
 SECRET_KEY = env.str('SECRET_KEY', default=None)
+
+AUTH_USER_MODEL = 'user.CustomUser'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -19,6 +24,7 @@ INSTALLED_APPS = [
 
     # CUSTOM APPS
     'management',
+    'apps.user',
 ]
 
 MIDDLEWARE = [
