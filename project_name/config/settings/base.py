@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 
 env = environ.Env()
-env.read_env()
+env.read_env(env.str('ENV_PATH', f'{PROJECT_PATH}/.env'))
 
 SECRET_KEY = env.str('SECRET_KEY', default=None)
 
